@@ -53,7 +53,7 @@ def load_sentiment():
 
 @st.cache_resource
 def load_translator():
-    return pipeline("translation_en_to_de", model="Helsinki-NLP/opus-mt-en-de")
+    return pipeline(model="Helsinki-NLP/opus-mt-en-de")
 
 # ── Opcja 1: Analiza sentymentu ───────────────────────────────────────────────
 if option == "Wydźwięk emocjonalny tekstu (eng)":
