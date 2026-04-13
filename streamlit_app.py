@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from transformers import pipeline
+from transformers import pipeline, MarianMTModel, MarianTokenizer
 
 # ── Konfiguracja strony ──────────────────────────────────────────────────────
 st.set_page_config(
@@ -53,7 +53,10 @@ def load_sentiment():
 
 @st.cache_resource
 def load_translator():
-    return pipeline(model="Helsinki-NLP/opus-mt-en-de")
+    model_name = "Helsinki-NLP/opus-mt-en-de"
+    tokenizer = MarianTokenizer.from_pretrained(model_name)
+    model = MarianMTModel.from_pretrained(model_name)
+    return tokenizer, model
 
 # ── Opcja 1: Analiza sentymentu ───────────────────────────────────────────────
 if option == "Wydźwięk emocjonalny tekstu (eng)":
@@ -74,11 +77,13 @@ elif option == "Tłumaczenie angielski → niemiecki":
     text = st.text_area(label="Wpisz tekst w języku angielskim")
     if text:
         with st.spinner("Tłumaczę tekst... (pierwsze uruchomienie ładuje model ~300 MB)"):
-            translator = load_translator()
-            result = translator(text, max_length=512)
+            tokenizer, model = load_translator()
+            inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True)
+            translated = model.generate(**inputs)
+            result = tokenizer.decode(translated[0], skip_special_tokens=True)
         st.success("Tłumaczenie gotowe!")
         st.write("**Wynik:**")
-        st.write(result[0]["translation_text"])
+        st.write(result)
 
 # ── Stopka ────────────────────────────────────────────────────────────────────
 st.divider()
