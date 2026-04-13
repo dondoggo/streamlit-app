@@ -3,8 +3,8 @@ title: Lab Nlp Toolkit
 emoji: 🚀
 colorFrom: red
 colorTo: red
-sdk: docker
-app_port: 8501
+sdk: streamlit
+app_file: streamlit_app.py
 tags:
 - streamlit
 pinned: false
