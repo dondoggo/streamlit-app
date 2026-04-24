@@ -82,4 +82,4 @@ elif option == "Tłumaczenie angielski → niemiecki":
         st.write(result)
 
 st.divider()
-st.caption("Numer indeksu: 12345")
+st.caption("Numer indeksu: s27004")
