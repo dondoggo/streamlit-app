@@ -21,20 +21,20 @@ st.header("Czym jest ta aplikacja?")
 st.write(
     "To narzędzie pozwala w prosty sposób przetestować dwa zastosowania sztucznej inteligencji: "
     "**analizę emocji** w tekście angielskim oraz **automatyczne tłumaczenie** z angielskiego na niemiecki. "
-    "Modele działają lokalnie — żadne dane nie są wysyłane do zewnętrznych serwisów."
+    "Modele działają lokalnie - żadne dane nie są wysyłane do zewnętrznych serwisów."
 )
 
 st.subheader("Jak korzystać?")
 st.write("1. Wybierz interesującą Cię funkcję z listy poniżej.")
 st.write("2. Wpisz tekst w języku angielskim.")
-st.write("3. Poczekaj chwilę — przy pierwszym uruchomieniu model musi się załadować.")
+st.write("3. Poczekaj chwilę - przy pierwszym uruchomieniu model musi się załadować.")
 
 
 st.header("Narzędzia NLP")
 
 st.info(
     "Wybierz jedną z opcji poniżej, wpisz tekst i kliknij poza polem tekstowym. "
-    "Pierwsze uruchomienie może potrwać kilkadziesiąt sekund — model pobiera się automatycznie."
+    "Pierwsze uruchomienie może potrwać kilkadziesiąt sekund - model pobiera się automatycznie."
 )
 
 option = st.selectbox(
@@ -59,7 +59,7 @@ def load_translator():
 if option == "Analiza wydźwięku emocjonalnego (angielski)":
     text = st.text_area("Wpisz tekst w języku angielskim", placeholder="np. I really love this product!")
     if text:
-        with st.spinner("Trwa analiza emocji — proszę czekać..."):
+        with st.spinner("Trwa analiza emocji - proszę czekać..."):
             classifier = load_sentiment()
             answer = classifier(text)
         label = answer[0]["label"]
@@ -72,7 +72,7 @@ if option == "Analiza wydźwięku emocjonalnego (angielski)":
 elif option == "Tłumaczenie angielski → niemiecki":
     text = st.text_area("Wpisz tekst w języku angielskim", placeholder="np. The weather is beautiful today.")
     if text:
-        with st.spinner("Trwa tłumaczenie — proszę czekać..."):
+        with st.spinner("Trwa tłumaczenie - proszę czekać..."):
             tokenizer, model = load_translator()
             inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True)
             translated = model.generate(**inputs)
