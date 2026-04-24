@@ -30,12 +30,6 @@ st.write("1. Wybierz interesującą Cię funkcję z listy poniżej.")
 st.write("2. Wpisz tekst w języku angielskim.")
 st.write("3. Poczekaj chwilę — przy pierwszym uruchomieniu model musi się załadować.")
 
-st.subheader("Przykładowy kod Streamlit")
-st.code("st.write('Witaj, świecie!')", language="python")
-
-with st.echo():
-    st.write("Przykład działania st.echo() — ten kod jest widoczny i wykonywany jednocześnie")
-
 st.subheader("Przykładowy zbiór danych")
 df = pd.read_csv("DSP_4.csv", sep=";")
 st.dataframe(df)
