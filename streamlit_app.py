@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 from transformers import pipeline, MarianMTModel, MarianTokenizer
 
 st.set_page_config(
@@ -9,8 +8,8 @@ st.set_page_config(
 )
 
 st.image(
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Pytorch_logo.png/320px-Pytorch_logo.png",
-    width=120,
+    "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+    width=100,
 )
 
 st.title("Zestaw narzędzi NLP")
@@ -30,9 +29,6 @@ st.write("1. Wybierz interesującą Cię funkcję z listy poniżej.")
 st.write("2. Wpisz tekst w języku angielskim.")
 st.write("3. Poczekaj chwilę — przy pierwszym uruchomieniu model musi się załadować.")
 
-st.subheader("Przykładowy zbiór danych")
-df = pd.read_csv("DSP_4.csv", sep=";")
-st.dataframe(df)
 
 st.header("Narzędzia NLP")
 
